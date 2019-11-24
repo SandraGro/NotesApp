@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 //Components
-import Header from './components/Header/Header';
+import Header from './components/Header';
 import Footer from './components/Footer/Footer';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import Route from 'react-router-dom/Route';
-import Container from './components/Container/Container';
+import Container from './components/NotesContainer';
 
 
 
