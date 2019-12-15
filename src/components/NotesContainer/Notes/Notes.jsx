@@ -1,12 +1,12 @@
 import React from "react";
 
-export default (props) => {
-    const {description, removeNote} = props;
-    return(
+function Notes(props) {
+    const { description, removeNote } = props;
+    return (
         <li className="note">
             {description}
-            <span onClick = {removeNote}> x</span>
+            <span id={props.id} onClick={removeNote}> x</span>
         </li>
     );
-
-} ;
+}
+export default Notes;
