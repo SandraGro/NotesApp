@@ -6,12 +6,12 @@ class Container extends Component {
     super(props);
     this.addNote = this.addNote.bind(this);
     this.removeNote = this.removeNote.bind(this);
+    this.done = this.done.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.state = {
       currentNote: '',
       notes: [
-        { id: 1, description: 'hala' },
-        { id: 2, description: 'hala2' },
+        { id: 1, description: 'hala', completed: false },
       ]
     }
   }
@@ -27,18 +27,25 @@ class Container extends Component {
     const { notes } = this.state;
     let newNotes = [...notes];
     var filtered = newNotes.filter(function (elemento_a_comparar) {
-      console.log(elemento_a_comparar['id'], id.target.id);
-      return elemento_a_comparar['id'] != id.target.id;
+      console.log(elemento_a_comparar['id'], id);
+      return elemento_a_comparar['id'] !== id;
     });
     this.setState({notes: filtered})
     console.log(filtered);
   }
 
-  // done(){
-  //   const { notes } = this.state;
-  //   let newNotes = [...notes];
-    
-  // }
+    done(id){
+      console.log(id);
+      const { notes } = this.state;
+      let newNotes = [];
+
+      for (let i in notes){
+        if(id === notes[i].id ){
+           console.log('tachado');
+        }        
+      }
+        
+    }
 
   handleInputChange(event) {
     this.setState({
@@ -52,7 +59,7 @@ class Container extends Component {
         <ul>{
           this.state.notes.map(note => {
             return (
-              <Notes description={note.description} id={note.id} removeNote={this.removeNote} />
+              <Notes description={note.description} id={note.id} completed={note.completed} removeNote={this.removeNote} done={this.done} />
             )
           })
         }

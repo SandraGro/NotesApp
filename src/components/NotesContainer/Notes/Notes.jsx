@@ -1,11 +1,12 @@
 import React from "react";
 
 function Notes(props) {
-    const { description, removeNote } = props;
+    const { description, removeNote, done, id, completed } = props;
     return (
-        <li className="note">
+        <li className={`${completed && 'completed '}`}>
+            <span onClick={()=>done(id)}> O </span>
             {description}
-            <span id={props.id} onClick={removeNote}> x</span>
+            <span id={props.id} onClick={()=>removeNote(id)}> x</span>
         </li>
     );
 }
