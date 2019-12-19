@@ -37,14 +37,15 @@ class Container extends Component {
     done(id){
       console.log(id);
       const { notes } = this.state;
-      let newNotes = [];
+      let newNotes = [...notes];
 
-      for (let i in notes){
-        if(id === notes[i].id ){
-           console.log('tachado');
+      for (let i in newNotes){
+        if(id === newNotes[i].id ){
+          newNotes[i].completed = !newNotes[i].completed
+          console.log(newNotes[i].completed);
         }        
       }
-        
+      this.setState({notes: newNotes});
     }
 
   handleInputChange(event) {

@@ -1,13 +1,18 @@
 import React from "react";
+import { Card, Form } from "react-bootstrap";
+import "./Notes.css"
 
 function Notes(props) {
     const { description, removeNote, done, id, completed } = props;
     return (
-        <li className={`${completed && 'completed '}`}>
-            <span onClick={()=>done(id)}> O </span>
-            {description}
-            <span id={props.id} onClick={()=>removeNote(id)}> x</span>
-        </li>
+        <Card className={`${completed && 'completed '}`}>
+            <Card.Body> <Form.Check onChange={() => done(id)} aria-label="option 1" /> {description}
+                <span id={props.id} onClick={() => removeNote(id)}> x</span></Card.Body>
+
+        </Card>
+
+
+
     );
 }
 export default Notes;

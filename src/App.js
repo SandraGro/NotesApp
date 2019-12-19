@@ -6,6 +6,8 @@ import Footer from './components/Footer/Footer';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import Route from 'react-router-dom/Route';
 import Container from './components/NotesContainer';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 
