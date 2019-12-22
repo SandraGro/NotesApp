@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Notes from "./Notes";
+import { Card, Form, Col, Row } from "react-bootstrap";
+import "./NotesContainer.css"
+
 
 class Container extends Component {
   constructor(props) {
@@ -30,23 +33,23 @@ class Container extends Component {
       console.log(elemento_a_comparar['id'], id);
       return elemento_a_comparar['id'] !== id;
     });
-    this.setState({notes: filtered})
+    this.setState({ notes: filtered })
     console.log(filtered);
   }
 
-    done(id){
-      console.log(id);
-      const { notes } = this.state;
-      let newNotes = [...notes];
+  done(id) {
+    console.log(id);
+    const { notes } = this.state;
+    let newNotes = [...notes];
 
-      for (let i in newNotes){
-        if(id === newNotes[i].id ){
-          newNotes[i].completed = !newNotes[i].completed
-          console.log(newNotes[i].completed);
-        }        
+    for (let i in newNotes) {
+      if (id === newNotes[i].id) {
+        newNotes[i].completed = !newNotes[i].completed
+        console.log(newNotes[i].completed);
       }
-      this.setState({notes: newNotes});
     }
+    this.setState({ notes: newNotes });
+  }
 
   handleInputChange(event) {
     this.setState({
@@ -56,18 +59,28 @@ class Container extends Component {
 
   render() {
     return (
-      <div className="container">
-        <ul>{
-          this.state.notes.map(note => {
-            return (
-              <Notes description={note.description} id={note.id} completed={note.completed} removeNote={this.removeNote} done={this.done} />
-            )
-          })
-        }
-        </ul>
-        <input ref={input => { this.inputRef = input }} value={this.state.currentNote} placeholder="Write a note" onChange={this.handleInputChange}></input>
-        <button onClick={this.addNote}>Add</button>
-      </div>
+      <Card className="notes-container">
+        <Card.Body>
+          <ul className="notes-list">{
+            this.state.notes.map(note => {
+              return (
+                <Notes description={note.description} id={note.id} completed={note.completed} removeNote={this.removeNote} done={this.done} />
+              )
+            })
+          }
+          </ul>
+          <div className="input-container">
+            <Row>
+              <Col lg={11}>
+                <Form.Control type="text" className="input-new-note" ref={input => { this.inputRef = input }} value={this.state.currentNote} placeholder="Write a note" onChange={this.handleInputChange} />
+              </Col>
+              <Col lg={1}>
+                <i class="fas fa-plus fa-lg plus-button" onClick={this.addNote}></i>
+              </Col>
+            </Row>
+          </div>
+        </Card.Body>
+      </Card>
     );
   }
 }

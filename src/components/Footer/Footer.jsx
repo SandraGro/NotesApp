@@ -4,8 +4,10 @@ class Footer extends Component {
   
   render() {
     return (
-      <footer>
-        <p>by: Sandra</p>
+      <footer className="footer">
+         <div className="container">
+           <p className="m-0 text-center"> &copy; Sandra</p>
+         </div>
       </footer>
     );
   }

@@ -1,0 +1,20 @@
+.input-new-note{
+    width: 100%;
+}
+
+.plus-button{
+    cursor: pointer;
+}
+
+.notes-container.card{
+    border: 0px;
+}
+
+ul.notes-list{
+    padding: 20px 100px;
+    margin-bottom: 130px;
+}
+
+.input-container{
+    padding: 20px 60px 20px 100px;
+}
