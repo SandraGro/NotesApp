@@ -5,9 +5,10 @@ import "./Notes.css"
 function Notes(props) {
     const { description, removeNote, done, id, completed } = props;
     return (
-        <Card className={`${completed && 'completed '}`}>
+        <Card className={`${completed && 'completed '}`} note>
             <Card.Body> <Form.Check className="checkbox" onChange={() => done(id)} aria-label="option 1" /> {description}
-                <span id={props.id} className="close" onClick={() => removeNote(id)}> x</span></Card.Body>
+                <span id={props.id} className="close" onClick={() => removeNote(id)}> x</span>
+            </Card.Body>
         </Card>
     );
 }

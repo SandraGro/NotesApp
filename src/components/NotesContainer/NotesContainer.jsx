@@ -22,6 +22,7 @@ class Container extends Component {
     const { notes } = this.state;
     let newNotes = [...notes];
     newNotes.push({ id: notes.length + 1, description: this.state.currentNote })
+    console.log(newNotes);
     this.setState({ notes: newNotes, currentNote: '' })
     this.inputRef.focus();
   }
@@ -29,23 +30,29 @@ class Container extends Component {
   removeNote(id) {
     const { notes } = this.state;
     let newNotes = [...notes];
-    var filtered = newNotes.filter(function (elemento_a_comparar) {
-      console.log(elemento_a_comparar['id'], id);
-      return elemento_a_comparar['id'] !== id;
-    });
-    this.setState({ notes: filtered })
-    console.log(filtered);
+    for (let i = 0; i < notes.length; i++) {
+      if (newNotes[i].id == id) {
+        console.log('removing');
+        var filtered = notes.splice(i, 1);
+      }
+      this.setState({ newNotes: filtered })
+    }
+    // var filtered = newNotes.filter(function (elemento_a_comparar) {
+    //   console.log(elemento_a_comparar['id'], id);
+    //   return elemento_a_comparar['id'] !== id;
+    // });
+    // this.setState({ notes: filtered })
+    // console.log(filtered);
   }
 
   done(id) {
-    console.log(id);
     const { notes } = this.state;
     let newNotes = [...notes];
 
     for (let i in newNotes) {
       if (id === newNotes[i].id) {
         newNotes[i].completed = !newNotes[i].completed
-        console.log(newNotes[i].completed);
+        // console.log(newNotes[i].completed);
       }
     }
     this.setState({ notes: newNotes });
