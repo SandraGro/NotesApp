@@ -14,35 +14,38 @@ class Container extends Component {
     this.state = {
       currentNote: '',
       notes: [
-        { id: 1, description: 'hala', completed: false },
-      ]
+        { id: 0, description: 'hala', completed: false },
+      ],
+      lastId: 0
     }
   }
   addNote() {
-    const { notes } = this.state;
+    const { notes, lastId } = this.state;
+    let currentId = lastId + 1;
     let newNotes = [...notes];
-    newNotes.push({ id: notes.length + 1, description: this.state.currentNote })
+    newNotes.push({ id: currentId, description: this.state.currentNote, completed: false })
     console.log(newNotes);
-    this.setState({ notes: newNotes, currentNote: '' })
+    this.setState({ notes: newNotes, currentNote: '', lastId: currentId })
     this.inputRef.focus();
   }
 
   removeNote(id) {
     const { notes } = this.state;
     let newNotes = [...notes];
-    for (let i = 0; i < notes.length; i++) {
-      if (newNotes[i].id == id) {
-        console.log('removing');
-        var filtered = notes.splice(i, 1);
-      }
-      this.setState({ newNotes: filtered })
-    }
-    // var filtered = newNotes.filter(function (elemento_a_comparar) {
-    //   console.log(elemento_a_comparar['id'], id);
-    //   return elemento_a_comparar['id'] !== id;
-    // });
-    // this.setState({ notes: filtered })
-    // console.log(filtered);
+    // let filtered;
+    // for (let i = 0; i < notes.length; i++) {
+    //   if (newNotes[i].id == id) {
+    //     console.log('removing');
+    //     filtered = newNotes.splice(i, 1);
+    //   }
+    //   this.setState({ notes: filtered })
+    // }
+    let filtered = newNotes.filter(function (elemento_a_comparar) {
+      console.log(elemento_a_comparar['id'], id);
+      return elemento_a_comparar['id'] !== id;
+    });
+    this.setState({ notes: filtered })
+    console.log(filtered);
   }
 
   done(id) {
