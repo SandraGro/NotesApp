@@ -14,50 +14,31 @@ class Container extends Component {
     this.state = {
       currentNote: '',
       notes: [
-        { id: 0, description: 'hala', completed: false },
-      ],
-      lastId: 0
+        { description: 'hala', completed: false },
+      ]
     }
   }
+
   addNote() {
-    const { notes, lastId } = this.state;
-    let currentId = lastId + 1;
+    const { notes } = this.state;
     let newNotes = [...notes];
-    newNotes.push({ id: currentId, description: this.state.currentNote, completed: false })
+    newNotes.push({ description: this.state.currentNote, completed: false })
     console.log(newNotes);
-    this.setState({ notes: newNotes, currentNote: '', lastId: currentId })
+    this.setState({ notes: newNotes, currentNote: '' })
     this.inputRef.focus();
   }
 
   removeNote(id) {
     const { notes } = this.state;
     let newNotes = [...notes];
-    // let filtered;
-    // for (let i = 0; i < notes.length; i++) {
-    //   if (newNotes[i].id == id) {
-    //     console.log('removing');
-    //     filtered = newNotes.splice(i, 1);
-    //   }
-    //   this.setState({ notes: filtered })
-    // }
-    let filtered = newNotes.filter(function (elemento_a_comparar) {
-      console.log(elemento_a_comparar['id'], id);
-      return elemento_a_comparar['id'] !== id;
-    });
-    this.setState({ notes: filtered })
-    console.log(filtered);
+    newNotes.splice(id, 1)
+    this.setState({ notes: newNotes })
   }
 
   done(id) {
     const { notes } = this.state;
     let newNotes = [...notes];
-
-    for (let i in newNotes) {
-      if (id === newNotes[i].id) {
-        newNotes[i].completed = !newNotes[i].completed
-        // console.log(newNotes[i].completed);
-      }
-    }
+    newNotes[id].completed = !newNotes[id].completed
     this.setState({ notes: newNotes });
   }
 
@@ -72,9 +53,9 @@ class Container extends Component {
       <Card className="notes-container">
         <Card.Body>
           <ul className="notes-list">{
-            this.state.notes.map(note => {
+            this.state.notes.map((note, index) => {
               return (
-                <Notes description={note.description} id={note.id} completed={note.completed} removeNote={this.removeNote} done={this.done} />
+                <Notes description={note.description} id={index} completed={note.completed} removeNote={this.removeNote} done={this.done} />
               )
             })
           }
