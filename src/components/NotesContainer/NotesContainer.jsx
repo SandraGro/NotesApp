@@ -22,10 +22,15 @@ class Container extends Component {
   addNote() {
     const { notes } = this.state;
     let newNotes = [...notes];
-    newNotes.push({ description: this.state.currentNote, completed: false })
-    console.log(newNotes);
-    this.setState({ notes: newNotes, currentNote: '' })
-    this.inputRef.focus();
+    if (this.state.currentNote.trim() !== '') {
+      newNotes.push({ description: this.state.currentNote, completed: false })
+      console.log(newNotes);
+      this.setState({ notes: newNotes, currentNote: '' })
+      this.inputRef.focus();
+    }else{
+      console.log('test');
+    }
+
   }
 
   removeNote(id) {
@@ -62,10 +67,10 @@ class Container extends Component {
           </ul>
           <div className="input-container">
             <Row>
-              <Col lg={11}>
+              <Col lg={11} xs={8}>
                 <Form.Control type="text" className="input-new-note" ref={input => { this.inputRef = input }} value={this.state.currentNote} placeholder="Write a note" onChange={this.handleInputChange} />
               </Col>
-              <Col lg={1}>
+              <Col lg={1} xs={4}>
                 <i class="fas fa-plus fa-lg plus-button" onClick={this.addNote}></i>
               </Col>
             </Row>

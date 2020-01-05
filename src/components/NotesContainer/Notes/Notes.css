@@ -10,3 +10,10 @@
 .close{
     float: right;
 }
+
+.note:nth-child(odd) {
+    background-color:#f2f2f2;
+}
+.note:nth-child(even) {
+    background-color:#fbfbfb;
+}   
