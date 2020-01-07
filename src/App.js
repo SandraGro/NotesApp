@@ -3,8 +3,7 @@ import './App.css';
 //Components
 import Header from './components/Header';
 import Footer from './components/Footer/Footer';
-import BrowserRouter from 'react-router-dom/BrowserRouter';
-import Route from 'react-router-dom/Route';
+import {BrowserRouter, Route} from 'react-router-dom';
 import Container from './components/NotesContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

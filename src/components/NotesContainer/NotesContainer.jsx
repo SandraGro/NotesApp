@@ -60,7 +60,7 @@ class Container extends Component {
           <ul className="notes-list">{
             this.state.notes.map((note, index) => {
               return (
-                <Notes description={note.description} id={index} completed={note.completed} removeNote={this.removeNote} done={this.done} />
+                <Notes key={index} description={note.description} id={index} completed={note.completed} removeNote={this.removeNote} done={this.done} />
               )
             })
           }
@@ -71,7 +71,7 @@ class Container extends Component {
                 <Form.Control type="text" className="input-new-note" ref={input => { this.inputRef = input }} value={this.state.currentNote} placeholder="Write a note" onChange={this.handleInputChange} />
               </Col>
               <Col lg={1} xs={4}>
-                <i class="fas fa-plus fa-lg plus-button" onClick={this.addNote}></i>
+                <i className="fas fa-plus fa-lg plus-button" onClick={this.addNote}></i>
               </Col>
             </Row>
           </div>
